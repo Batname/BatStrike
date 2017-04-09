@@ -24,6 +24,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = PlayerControl)
 	void MoveRight(float Val);
 
+	UFUNCTION(BlueprintCallable, Category = PlayerControl)
+	void OnFire();
+
+	UFUNCTION(BlueprintCallable, Category = PlayerControl)
+	void OnStopFire();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -33,6 +39,12 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess="true"))
 	USpringArmComponent* CameraBoom;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapons)
+    TArray<class AMyPlayer*> Column;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapons, Meta = (BlueprintProtected = "true"))
+	int DefaultWeapontCount;
 
 public:
 	// Called every frame

@@ -2,6 +2,7 @@
 
 #include "BatStrike.h"
 #include "MyPlayer.h"
+#include "Weapon.h"
 
 
 // Sets default values
@@ -42,6 +43,9 @@ void AMyPlayer::SetupPlayerInputComponent(class UInputComponent* PlayerInputComp
 	// Bind input to payer from project setting editor
 	InputComponent->BindAxis("MoveForward", this, &AMyPlayer::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &AMyPlayer::MoveRight);
+	InputComponent->BindAction("StartFire", IE_Pressed, this, &AMyPlayer::OnFire);
+	InputComponent->BindAction("StopFire", IE_Released, this, &AMyPlayer::OnStopFire);
+
 }
 
 void AMyPlayer::MoveForward(float Val)
@@ -57,4 +61,14 @@ void AMyPlayer::MoveRight(float Val)
 {
 	FVector Right(0, 1, 0);
 	AddMovementInput(Right, Val);
+}
+
+void AMyPlayer::OnFire()
+{
+	UE_LOG(LogClass, Warning, TEXT("StartFire"));
+}
+
+void AMyPlayer::OnStopFire()
+{
+	UE_LOG(LogClass, Warning, TEXT("OnStopFire"));
 }
